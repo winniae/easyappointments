@@ -166,6 +166,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="service-attendants-per-booking">
+                            <?= lang('attendants_per_booking') ?>
+                            <span class="text-danger">*</span>
+                        </label>
+                        <input id="service-attendants-per-booking" class="form-control required" type="number" min="1">
+                    </div>
+
+                    <div class="form-group">
                         <label for="service-location">
                             <?= lang('location') ?>
 

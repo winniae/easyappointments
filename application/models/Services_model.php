@@ -122,6 +122,13 @@ class Services_model extends EA_Model {
                 . $service['attendants_number']);
         }
 
+        if ($service['attendants_per_booking'] !== NULL && ( ! is_numeric($service['attendants_per_booking'])
+                || $service['attendants_per_booking'] < 1))
+        {
+            throw new Exception('Service attendants per booking must be numeric and greater or equal to one: '
+                . $service['attendants_per_booking']);
+        }
+
         return TRUE;
     }
 

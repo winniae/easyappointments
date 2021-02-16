@@ -474,6 +474,7 @@ class Appointments extends EA_Controller {
 
             $appointment['id_users_customer'] = $customer_id;
             $appointment['is_unavailable'] = (int)$appointment['is_unavailable']; // needs to be type casted
+            $appointment['audioguide'] = (int) filter_var($appointment['audioguide'], FILTER_VALIDATE_BOOLEAN);
             $appointment['id'] = $this->appointments_model->add($appointment);
             $appointment['hash'] = $this->appointments_model->get_value('hash', $appointment['id']);
 
@@ -551,7 +552,7 @@ class Appointments extends EA_Controller {
 
         foreach ($available_hours as $available_hour)
         {
-            if ($appointment_hour === $available_hour)
+            if ($appointment_hour === $available_hour['start'])
             {
                 $is_still_available = TRUE;
                 break;

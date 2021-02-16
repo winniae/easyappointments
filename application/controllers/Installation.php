@@ -98,7 +98,8 @@ class Installation extends EA_Controller {
                 'price' => '0',
                 'currency' => '',
                 'availabilities_type' => 'flexible',
-                'attendants_number' => '1'
+                'attendants_number' => '1',
+                'attendants_per_booking' => '1'
             ]);
 
             // Provider

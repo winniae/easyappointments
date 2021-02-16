@@ -33,6 +33,8 @@ class Appointments implements ParsersInterface {
             'book' => $response['book_datetime'],
             'start' => $response['start_datetime'],
             'end' => $response['end_datetime'],
+            'attendant_count' => $response['attendant_count'],
+            'audioguide' => (int) filter_var($response['audioguide'], FILTER_VALIDATE_BOOLEAN),
             'hash' => $response['hash'],
             'location' => $response['location'],
             'notes' => $response['notes'],
@@ -94,6 +96,16 @@ class Appointments implements ParsersInterface {
         if (array_key_exists('end', $request))
         {
             $decoded_request['end_datetime'] = $request['end'];
+        }
+
+        if (array_key_exists('attendant_count', $request))
+        {
+            $decoded_request['attendant_count'] = $request['attendant_count'];
+        }
+
+        if (array_key_exists('audioguide', $request))
+        {
+            $decoded_request['audioguide'] = $request['audioguide'];
         }
 
         if (array_key_exists('hash', $request))

@@ -92,16 +92,26 @@ window.FrontendBookApi = window.FrontendBookApi || {};
 
                     response.forEach(function (availableHour) {
                         var availableHourMoment = moment
-                            .tz(selectedDate + ' ' + availableHour + ':00', providerTimezone)
+                            .tz(selectedDate + ' ' + availableHour['start'] + ':00', providerTimezone)
                             .tz(selectedTimezone);
+                        var freeAttendants = availableHour['available_attendants'];
+                        var maxAttendants = availableHour['max_attendants'];
+
+                        var buttonText;
+                        if (maxAttendants > 1) {
+                            buttonText = availableHourMoment.format(timeFormat) + " (" + freeAttendants + " / " + maxAttendants + " verfügbar)";
+                        }
+                        else {
+                            buttonText = availableHourMoment.format(timeFormat);
+                        }
 
                         $('#available-hours').append(
                             $('<button/>', {
                                 'class': 'btn btn-outline-secondary btn-block shadow-none available-hour',
                                 'data': {
-                                    'value': availableHour
+                                    'value': availableHour['start']
                                 },
-                                'text': availableHourMoment.format(timeFormat)
+                                'text': buttonText
                             })
                         );
                     });

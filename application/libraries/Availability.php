@@ -54,11 +54,13 @@ class Availability {
     {
         $available_periods = $this->get_available_periods($date, $provider, $exclude_appointment_id);
 
-        $available_hours = $this->generate_available_hours($date, $service, $available_periods);
-
         if ($service['attendants_number'] > 1)
         {
             $available_hours = $this->consider_multiple_attendants($date, $service, $provider, $exclude_appointment_id);
+        }
+        else
+        {
+            $available_hours = $this->generate_available_hours($date, $service, $available_periods);
         }
 
         return $this->consider_book_advance_timeout($date, $available_hours, $provider);
@@ -309,7 +311,12 @@ class Availability {
 
             while (($diff->h * 60 + $diff->i) >= (int)$service['duration'])
             {
-                $available_hours[] = $current_hour->format('H:i');
+                $available_hours[] =
+                    [
+                        'start' => $current_hour->format('H:i'),
+                        'available_attendants' => 1,
+                        'max_attendants' => 1
+                    ];
                 $current_hour->add(new DateInterval('PT' . $interval . 'M'));
                 $diff = $current_hour->diff($end_hour);
             }
@@ -415,7 +422,12 @@ class Availability {
 
                 if ($appointment_attendants_number < $service['attendants_number'])
                 {
-                    $hours[] = $slot_start->format('H:i');
+                    $hours[] =
+                        [
+                            'start' => $slot_start->format('H:i'),
+                            'available_attendants' => $service['attendants_number'] - $appointment_attendants_number,
+                            'max_attendants' => $service['attendants_number']
+                        ];
                 }
 
                 $slot_start->add($interval);
@@ -574,7 +586,7 @@ class Availability {
 
         foreach ($available_hours as $index => $value)
         {
-            $available_hour = new DateTime($selected_date . ' ' . $value, $provider_timezone);
+            $available_hour = new DateTime($selected_date . ' ' . $value['start'], $provider_timezone);
 
             if ($available_hour->getTimestamp() <= $threshold->getTimestamp())
             {
@@ -582,8 +594,10 @@ class Availability {
             }
         }
 
+        // todo sort array by 'start' hour
         $available_hours = array_values($available_hours);
-        sort($available_hours, SORT_STRING);
-        return array_values($available_hours);
+//        sort($available_hours, SORT_STRING);
+//        return array_values($available_hours);
+        return $available_hours;
     }
 }

@@ -609,6 +609,35 @@ window.GeneralFunctions = window.GeneralFunctions || {};
     };
 
     /**
+     * Render a true/false icon.
+     *
+     * @param {Boolean} check
+     *
+     * @return {string} The rendered HTML.
+     */
+    exports.renderCheckIcon = function (check) {
+        if (check)
+        {
+            return $('<div/>', {
+                'html': [
+                    $('<span/>', {
+                        'class': 'fas fa-check'
+                    })
+                ]
+            })
+                .html();
+        }
+        return $('<div/>', {
+            'html': [
+                $('<span/>', {
+                    'class': 'fas fa-times'
+                })
+            ]
+        })
+            .html();
+    };
+
+    /**
      * Format a given date according to ISO 8601 date format string yyyy-mm-dd
      *
      * @param {String} date The date to be formatted.

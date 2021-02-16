@@ -36,6 +36,18 @@
                 <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('timezone') ?></td>
                 <td style="padding: 3px;"><?= $appointment_timezone ?></td>
             </tr>
+            <tr>
+                <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('attendant_count') ?></td>
+                <td style="padding: 3px;"><?= $appointment_attendant_count ?></td>
+            </tr>
+            <tr>
+                <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('audioguide') ?></td>
+                <td style="padding: 3px;"><?= $appointment_audioguide ?></td>
+            </tr>
+            <tr>
+                <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('notes') ?></td>
+                <td style="padding: 3px;"><?= $appointment_notes ?></td>
+            </tr>
         </table>
 
         <h2><?= lang('customer_details_title') ?></h2>

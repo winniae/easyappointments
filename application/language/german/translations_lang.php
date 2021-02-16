@@ -325,3 +325,11 @@ $lang['list'] = 'Liste';
 $lang['default'] = 'Standard';
 $lang['table'] = 'Tabelle';
 $lang['date'] = 'Datum';
+
+// new lang properties
+$lang['notes_frontend'] = 'Haben Sie noch weitere Hinweise zur Buchung?';
+$lang['audioguide'] = 'Audioguide';
+$lang['audioguide_frontend'] = 'Möchten sie den Audioguide für ihre Gruppe dazubuchen?';
+$lang['attendant_count_frontend'] = 'Wieviele Teilnehmer*innen hat Ihre Besuchergruppe?';
+$lang['attendant_count'] = 'Anzahl Besucher';
+$lang['attendants_per_booking'] = 'Maximale Besucher pro Buchung';

@@ -118,6 +118,8 @@ class Appointments extends API_V1_Controller {
                 }
             }
 
+            $appointment['audioguide'] = (int) filter_var($appointment['audioguide'], FILTER_VALIDATE_BOOLEAN);
+
             $id = $this->appointments_model->add($appointment);
 
             $appointment = $this->appointments_model->get_row($id);

@@ -62,6 +62,8 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                 end_datetime: endDatetime,
                 location: $dialog.find('#appointment-location').val(),
                 notes: $dialog.find('#appointment-notes').val(),
+                attendant_count: $dialog.find('#attendant-count').val(),
+                audioguide: $dialog.find('#audioguide').prop('checked'),
                 is_unavailable: false
             };
 
@@ -318,6 +320,13 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
             var start = $('#start-datetime').datetimepicker('getDate');
             $('#end-datetime').datetimepicker('setDate', new Date(start.getTime() + duration * 60000));
 
+            // Update attend-count selector
+            var $attendantSelector = $('#attendant-count');
+            $attendantSelector.empty();
+            for (var i=1; i <= service.attendants_number; i++) {
+                $attendantSelector.append(new Option(i.toString(), i.toString()));
+            }
+
             // Update the providers select box.
 
             GlobalVariables.availableProviders.forEach(function (provider) {
@@ -367,6 +376,9 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
         // Empty form fields.
         $dialog.find('input, textarea').val('');
         $dialog.find('.modal-message').fadeOut();
+
+        $dialog.find('#attendant-count').empty();
+        $dialog.find('#audioguide').prop('selected', false);
 
         // Prepare service and provider select boxes.
         $dialog.find('#select-service').val(

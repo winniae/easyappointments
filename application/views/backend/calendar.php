@@ -266,6 +266,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="attendant-count" class="control-label">
+                                <?= lang('attendant_count') ?>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <select id="attendant-count" class="required form-control"></select>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="audioguide">
+                            <label class="form-check-label" for="audioguide">
+                                <?= lang('audioguide') ?>
+                            </label>
+                        </div>
                     </fieldset>
 
                     <br>

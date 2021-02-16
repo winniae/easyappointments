@@ -540,7 +540,7 @@ window.FrontendBook = window.FrontendBook || {};
                         }),
                         $('<br/>'),
                         $('<span/>', {
-                            'text': EALang.start + ': ' + selectedDate + ' ' + $('.selected-hour').text()
+                            'text': EALang.start + ': ' + selectedDate + ' ' + Date.parse($('.selected-hour').data('value') || '').toString('HH:mm')
                         }),
                         $('<br/>'),
                         $('<span/>', {
@@ -552,6 +552,19 @@ window.FrontendBook = window.FrontendBook || {};
                             'prop': {
                                 'hidden': !servicePrice
                             }
+                        }),
+                        $('<br/>'),
+                        $('<span/>', {
+                            'text': EALang.attendant_count + ': ' + $('#attendant-count option:selected').text()
+                        }),
+                        $('<br/>'),
+                        $('<span/>', {
+                            'text': EALang.audioguide  + ': '
+                        }),
+                        GeneralFunctions.renderCheckIcon($('#audioguide').prop('checked')),
+                        $('<br/>'),
+                        $('<span/>', {
+                            'text': EALang.notes + ': ' + $('#notes').val()
                         }),
                     ]
                 })
@@ -626,6 +639,8 @@ window.FrontendBook = window.FrontendBook || {};
             start_datetime: $('#select-date').datepicker('getDate').toString('yyyy-MM-dd')
                 + ' ' + Date.parse($('.selected-hour').data('value') || '').toString('HH:mm') + ':00',
             end_datetime: calculateEndDatetime(),
+            attendant_count: $('#attendant-count').val(),
+            audioguide: $('#audioguide').prop('checked'),
             notes: $('#notes').val(),
             is_unavailable: false,
             id_users_provider: $('#select-provider').val(),
@@ -774,6 +789,13 @@ window.FrontendBook = window.FrontendBook || {};
                 'text': '[' + EALang.location + ' ' + service.location + ']'
             })
                 .appendTo($serviceDescription);
+        }
+
+        // update attend-count selector
+        var $attendantSelector = $('#attendant-count');
+        $attendantSelector.empty();
+        for (var i=1; i <= service.attendants_per_booking; i++) {
+            $attendantSelector.append(new Option(i.toString(), i.toString()));
         }
     }
 

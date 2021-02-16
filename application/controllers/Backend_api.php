@@ -87,6 +87,7 @@ class Backend_api extends EA_Controller {
                 $appointment['provider'] = $this->providers_model->get_row($appointment['id_users_provider']);
                 $appointment['service'] = $this->services_model->get_row($appointment['id_services']);
                 $appointment['customer'] = $this->customers_model->get_row($appointment['id_users_customer']);
+                $appointment['audioguide'] = (bool) $appointment['audioguide'];
             }
 
             $user_id = $this->session->userdata('user_id');
@@ -201,6 +202,7 @@ class Backend_api extends EA_Controller {
                 $appointment['provider'] = $this->providers_model->get_row($appointment['id_users_provider']);
                 $appointment['service'] = $this->services_model->get_row($appointment['id_services']);
                 $appointment['customer'] = $this->customers_model->get_row($appointment['id_users_customer']);
+                $appointment['audioguide'] = (bool) $appointment['audioguide'];
             }
 
             // Get unavailable periods (only for provider).
@@ -286,6 +288,8 @@ class Backend_api extends EA_Controller {
                 {
                     $appointment['id_users_customer'] = $customer['id'];
                 }
+
+                $appointment['audioguide'] = (int) filter_var($appointment['audioguide'], FILTER_VALIDATE_BOOLEAN);
 
                 $appointment['id'] = $this->appointments_model->add($appointment);
             }

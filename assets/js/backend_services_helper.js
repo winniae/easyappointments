@@ -138,7 +138,8 @@
                 description: $('#service-description').val(),
                 location: $('#service-location').val(),
                 availabilities_type: $('#service-availabilities-type').val(),
-                attendants_number: $('#service-attendants-number').val()
+                attendants_number: $('#service-attendants-number').val(),
+                attendants_per_booking: $('#service-attendants-per-booking').val()
             };
 
             if ($('#service-category').val() !== 'null') {
@@ -330,6 +331,7 @@
         $('#service-location').val(service.location);
         $('#service-availabilities-type').val(service.availabilities_type);
         $('#service-attendants-number').val(service.attendants_number);
+        $('#service-attendants-per-booking').val(service.attendants_per_booking);
 
         var categoryId = (service.id_service_categories !== null) ? service.id_service_categories : 'null';
         $('#service-category').val(categoryId);

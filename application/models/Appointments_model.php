@@ -137,6 +137,13 @@ class Appointments_model extends EA_Model {
             }
         }
 
+        if ($appointment['attendant_count'] <= 0)
+        {
+            throw new Exception('Appointment attendant count is invalid:'.$appointment['attendant_count']);
+        }
+
+        // todo check current and max number of attendants for this event
+
         return TRUE;
     }
 
@@ -560,7 +567,7 @@ class Appointments_model extends EA_Model {
         }
 
         return (int)$this->db
-            ->select('count(*) AS attendants_number')
+            ->select('sum(attendant_count) AS attendants_number')
             ->from('appointments')
             ->group_start()
             ->group_start()

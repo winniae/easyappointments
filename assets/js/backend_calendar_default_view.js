@@ -131,6 +131,8 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                 $dialog.find('#appointment-location').val(appointment.location);
                 $dialog.find('#appointment-notes').val(appointment.notes);
                 $dialog.find('#customer-notes').val(customer.notes);
+                $dialog.find('#attendant-count').val(appointment.attendant_count);
+                $dialog.find('#audioguide').prop('checked', appointment.audioguide);
                 $dialog.modal('show');
             } else {
                 var unavailable = lastFocusedEventData.data;
@@ -599,6 +601,22 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                     $('<br/>'),
 
                     $('<strong/>', {
+                        'class': 'd-inline-block mr-2',
+                        'text': EALang.attendant_count
+                    }),
+                    $('<span/>', {
+                        'text': event.data.attendant_count
+                    }),
+                    $('<br/>'),
+
+                    $('<strong/>', {
+                        'class': 'd-inline-block mr-2',
+                        'text': EALang.audioguide
+                    }),
+                    GeneralFunctions.renderCheckIcon(event.data.audioguide),
+                    $('<br/>'),
+
+                    $('<strong/>', {
                         'text': EALang.notes
                     }),
                     $('<span/>', {
@@ -1047,9 +1065,11 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                 response.appointments.forEach(function (appointment) {
                     var appointmentEvent = {
                         id: appointment.id,
-                        title: appointment.service.name + ' - '
-                            + appointment.customer.first_name + ' '
-                            + appointment.customer.last_name,
+                        title: appointment.customer.first_name + ' '
+                            + appointment.customer.last_name + ' - '
+                            + EALang.attendant_count + ': ' + appointment.attendant_count
+                            + (appointment.audioguide?' - ' + EALang.audioguide:'') + ' - '
+                            + appointment.service.name,
                         start: moment(appointment.start_datetime),
                         end: moment(appointment.end_datetime),
                         allDay: false,
@@ -1623,6 +1643,8 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
             $dialog.find('#appointment-location').val(appointment.location);
             $dialog.find('#appointment-notes').val(appointment.notes);
             $dialog.find('#customer-notes').val(customer.notes);
+            $dialog.find('#attendant-count').val(appointment.attendant_count);
+            $dialog.find('#audioguide').prop('checked', appointment.audioguide);
 
             $dialog.modal('show');
         }
