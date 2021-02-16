@@ -1378,6 +1378,10 @@ window.BackendCalendarDefaultView = window.BackendCalendarDefaultView || {};
                 columnFormat = 'ddd D/M';
                 break;
 
+            case 'DDMY':
+                columnFormat = 'ddd D.M.';
+                break;
+
             case 'MDY':
             case 'YMD':
                 columnFormat = 'ddd M/D';
