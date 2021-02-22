@@ -25,11 +25,54 @@
 <div id="main" class="container">
     <div class="row wrapper">
         <div id="book-appointment-wizard" class="col-12 col-lg-10 col-xl-8">
-
+            <style>
+                #book-appointment-wizard {
+                    border-radius: .0rem;
+                    overflow: hidden;
+                    box-shadow: rgba(45,62,80,.12) 0 1px 145px 0;
+                }
+                #book-appointment-wizard #header
+                {background: rgb(12, 164, 213);!important;}
+                body {
+                    background-color: white;
+                }
+                #book-appointment-wizard .book-step {
+                    background: #0a7292;
+                }
+                #book-appointment-wizard .book-step strong {
+                    color: #ffffff;
+                }
+                #book-appointment-wizard .book-step {
+                    background: #0a7292;
+                }
+                #book-appointment-wizard .active-step strong,body .ui-datepicker td a, body .ui-datepicker td span{color:#0a7292!important; }
+                #book-appointment-wizard .active-step{background: #ffffff;}
+                #book-appointment-wizard .footer-powered-by{display: none}
+                #book-appointment-wizard .footer-options{width: 100%;text-align: center}
+                body .ui-datepicker .ui-widget-header,body .ui-datepicker th,html body .ui-datepicker td a.ui-state-active {
+                    background: #0a7292!important;
+                }
+                body .ui-datepicker td a.ui-state-highlight {
+                    background: #5fb9d6 !important;}
+                body .ui-widget.ui-widget-content {
+                    border: 1px solid #0a7292;}
+                #book-appointment-wizard #available-hours .selected-hour {
+                    background-color: #0a7292;
+                    border-color: #0a7292;
+                }
+                #select-time .form-group{display: none}
+                #book-appointment-wizard #service-description{max-height: 36vh;}
+                #book-appointment-wizard #header {
+                    background: rgb(255, 255, 255);
+                }
+                @media (max-width:768px){ {
+                    #book-appointment-wizard #company-name{margin-left: -185px;position: relative}
+                }
+            </style>
             <!-- FRAME TOP BAR -->
 
             <div id="header">
-                <span id="company-name"><?= $company_name ?></span>
+                <span id="company-name"><img title="<?= $company_name ?>" src="/assets/img/logo.png"></span>
 
                 <div id="steps">
                     <div id="step-1" class="book-step active-step"
@@ -175,7 +218,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" style="display: none">
                                 <label for="select-provider">
                                     <strong><?= lang('provider') ?></strong>
                                 </label>
@@ -208,7 +251,7 @@
 
                     <div class="row frame-content">
                         <div class="col-12 col-md-6">
-                            <div id="select-date"></div>
+                            <div id="select-date" style="padding-top: 30px!important;"></div>
                         </div>
 
                         <div class="col-12 col-md-6">
@@ -222,21 +265,25 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label for="attendant-count" class="control-label">
-                            <?= lang('attendant_count_frontend') ?>
-                            <span class="text-danger">*</span>
-                        </label>
-                        <select id="attendant-count" class="required form-control"></select>
+                    <div class="pl-5 pr-5">
+                        <div class="form-group">
+                            <label for="attendant-count" class="control-label">
+                                <?= lang('attendant_count_frontend') ?>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <select id="attendant-count" class="required form-control"></select>
+                        </div>
                     </div>
 
-                    <div class="form-check mb-3">
-                        <input type="checkbox" class="form-check-input" id="audioguide">
-                        <label class="form-check-label" for="audioguide">
-                            <?= lang('audioguide_frontend') ?>
-                        </label>
+                    <div class="pl-5 pr-5">
+                        <div class="form-check mb-3">
+                            <input type="checkbox" class="form-check-input" id="audioguide">
+                            <label class="form-check-label" for="audioguide">
+                                <?= lang('audioguide_frontend') ?>
+                            </label>
+                        </div>
                     </div>
+
                 </div>
 
                 <div class="command-buttons">
@@ -312,13 +359,13 @@
                                 </label>
                                 <input type="text" id="zip-code" class="form-control" maxlength="120"/>
                             </div>
-                            <div class="form-group">
-                                <label for="notes" class="control-label">
-                                    <?= lang('notes') ?>
-                                </label>
-                                <textarea id="notes" maxlength="500" class="form-control" rows="1"></textarea>
-                            </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes" class="control-label">
+                            <?= lang('notes_frontend') ?>
+                        </label>
+                        <textarea id="notes" maxlength="500" class="form-control" rows="3"></textarea>
                     </div>
                 </div>
 

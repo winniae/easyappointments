@@ -4,8 +4,9 @@
 </head>
 <body style="font: 13px arial, helvetica, tahoma;">
 <div class="email-container" style="width: 650px; border: 1px solid #eee;">
-    <div id="header" style="background-color: #429a82; height: 45px; padding: 10px 15px;">
-        <strong id="logo" style="color: white; font-size: 20px; margin-top: 10px; display: inline-block">
+    <div id="header" style="background-color: white; height: 150px; padding: 10px 15px;">
+        <strong id="logo" style="color: white; font-size: 20px; margin-top: 10px; width;300px; display: inline-block">
+            <span id="company-name"><img title="<?= $company_name ?>" src="https://reservierung.kultur-lindau.de/assets/img/logo.png"></span>
             <?= $company_name ?>
         </strong>
     </div>

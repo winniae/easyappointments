@@ -15,11 +15,55 @@
 
     <script src="<?= asset_url('assets/ext/fontawesome/js/fontawesome.min.js') ?>"></script>
     <script src="<?= asset_url('assets/ext/fontawesome/js/solid.min.js') ?>"></script>
+    <style>
+        #book-appointment-wizard,.frame-container {
+            border-radius: .0rem;
+            overflow: hidden;
+            box-shadow: rgba(45,62,80,.12) 0 1px 145px 0;
+        }
+        #book-appointment-wizard #header
+        {background: rgb(12, 164, 213);!important;}
+        body {
+            background-color: white;
+        }
+        #book-appointment-wizard .book-step {
+            background: #0a7292;
+        }
+        #book-appointment-wizard .book-step strong {
+            color: #ffffff;
+        }
+        #book-appointment-wizard .book-step {
+            background: #0a7292;
+        }
+        #book-appointment-wizard .active-step strong,body .ui-datepicker td a, body .ui-datepicker td span{color:#0a7292!important; }
+        #book-appointment-wizard .active-step{background: #ffffff;}
+        #book-appointment-wizard .footer-powered-by{display: none}
+        #book-appointment-wizard .footer-options{width: 100%;text-align: center}
+        body .ui-datepicker .ui-widget-header,body .ui-datepicker th,html body .ui-datepicker td a.ui-state-active {
+            background: #0a7292!important;
+        }
+        body .ui-datepicker td a.ui-state-highlight {
+            background: #5fb9d6 !important;}
+        body .ui-widget.ui-widget-content {
+            border: 1px solid #0a7292;}
+        #book-appointment-wizard #available-hours .selected-hour {
+            background-color: #0a7292;
+            border-color: #0a7292;
+        }
+        #select-time .form-group{display: none}
+        #book-appointment-wizard #service-description{max-height: 36vh;}
+        #book-appointment-wizard #header {
+            background: rgb(255, 255, 255);
+        }
+        @media (max-width:768px){ {
+            #book-appointment-wizard #company-name{margin-left: -185px;position: relative}
+        }
+    </style>
 </head>
 <body>
 <div id="main" class="container">
     <div class="row wrapper">
-        <div id="success-frame" class="col-12 border my-auto frame-container">
+        <div id="success-frame" class="col-12 my-auto frame-container">
             <div>
                 <img id="success-icon" class="mt-0 mb-2" src="<?= base_url('assets/img/success.png') ?>"/>
             </div>
