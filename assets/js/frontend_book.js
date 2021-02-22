@@ -120,6 +120,7 @@ window.FrontendBook = window.FrontendBook || {};
 
             onSelect: function (dateText, instance) {
                 FrontendBookApi.getAvailableHours($(this).datepicker('getDate').toString('yyyy-MM-dd'));
+                resetErrorMessages();
                 FrontendBook.updateConfirmFrame();
             },
 
@@ -194,6 +195,7 @@ window.FrontendBook = window.FrontendBook || {};
             }
 
             FrontendBookApi.getAvailableHours(date.toString('yyyy-MM-dd'));
+            resetErrorMessages();
 
             FrontendBook.updateConfirmFrame();
         });
@@ -256,6 +258,7 @@ window.FrontendBook = window.FrontendBook || {};
 
             // If we are on the 2nd tab then the user should have an appointment hour selected.
             if ($(this).attr('data-step_index') === '2') {
+                resetErrorMessages();
                 if (!$('.selected-hour').length) {
                     if (!$('#select-hour-prompt').length) {
                         $('<div/>', {
@@ -264,6 +267,19 @@ window.FrontendBook = window.FrontendBook || {};
                             'text': EALang.appointment_hour_missing,
                         })
                             .prependTo('#available-hours');
+                    }
+                    return;
+                }
+                if ($('#attendant-count').val() < 1
+                    || $('#attendant-count').val() > $('.selected-hour').data('available_attendants')) {
+                    $('#attendant-count').parents('.form-group').addClass('text-danger');
+                    if (!$('#select-attendant-prompt').length) {
+                        $('<div/>', {
+                            'id': 'select-attendant-prompt',
+                            'class': 'text-danger mb-4',
+                            'text': EALang.attendant_count_overflow,
+                        })
+                            .appendTo('label[for=attendant-count]');
                     }
                     return;
                 }
@@ -797,6 +813,14 @@ window.FrontendBook = window.FrontendBook || {};
         for (var i=1; i <= service.attendants_per_booking; i++) {
             $attendantSelector.append(new Option(i.toString(), i.toString()));
         }
+        resetErrorMessages();
+    }
+
+    function resetErrorMessages() {
+        // reset error dialogs
+        $('#select-hour-prompt').remove();
+        $('#attendant-count').parents('.form-group').removeClass('text-danger');
+        $('#select-attendant-prompt').remove();
     }
 
 })(window.FrontendBook);

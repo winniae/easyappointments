@@ -552,7 +552,9 @@ class Appointments extends EA_Controller {
 
         foreach ($available_hours as $available_hour)
         {
-            if ($appointment_hour === $available_hour['start'])
+            if ($appointment_hour === $available_hour['start']
+                && $available_hour['available_attendants'] >= $appointment['attendant_count']
+                && $appointment['attendant_count'] <= $service['attendants_per_booking'])
             {
                 $is_still_available = TRUE;
                 break;

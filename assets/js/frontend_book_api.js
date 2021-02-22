@@ -109,7 +109,8 @@ window.FrontendBookApi = window.FrontendBookApi || {};
                             $('<button/>', {
                                 'class': 'btn btn-outline-secondary btn-block shadow-none available-hour',
                                 'data': {
-                                    'value': availableHour['start']
+                                    'value': availableHour['start'],
+                                    'available_attendants': freeAttendants
                                 },
                                 'text': buttonText
                             })

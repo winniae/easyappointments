@@ -420,12 +420,14 @@ class Availability {
                     $exclude_appointment_id
                 );
 
-                if ($appointment_attendants_number < $service['attendants_number'])
+                // always display slot, even when booked
+                //if ($appointment_attendants_number < $service['attendants_number'])
                 {
+                    $availableAttendants = $service['attendants_number'] - $appointment_attendants_number;
                     $hours[] =
                         [
                             'start' => $slot_start->format('H:i'),
-                            'available_attendants' => $service['attendants_number'] - $appointment_attendants_number,
+                            'available_attendants' => max($availableAttendants, 0),
                             'max_attendants' => $service['attendants_number']
                         ];
                 }

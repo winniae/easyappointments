@@ -142,8 +142,6 @@ class Appointments_model extends EA_Model {
             throw new Exception('Appointment attendant count is invalid:'.$appointment['attendant_count']);
         }
 
-        // todo check current and max number of attendants for this event
-
         return TRUE;
     }
 
