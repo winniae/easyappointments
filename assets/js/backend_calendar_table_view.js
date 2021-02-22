@@ -339,7 +339,8 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
             .find('select')
             .empty()
             .append(new Option('1 ' + EALang.day, 1))
-            .append(new Option('3 ' + EALang.days, 3));
+            .append(new Option('2 ' + EALang.days, 2))
+            .append(new Option('3 ' + EALang.days, 3, true, true));
 
         var $calendarHeader = $('<div/>', {
             'class': 'calendar-header'
@@ -540,7 +541,7 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                     var $providerColumn = $(providerColumn);
                     var providerId = $providerColumn.data('provider').id;
                     $providerColumn.find('.calendar-wrapper')
-                        .fullCalendar('changeView', providerView[providerId] || 'agendaDay');
+                        .fullCalendar('changeView', providerView[providerId] || 'listDay');
                 });
             });
     }
@@ -707,7 +708,7 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
         var firstWeekdayNumber = GeneralFunctions.getWeekDayId(firstWeekday);
 
         $wrapper.fullCalendar({
-            defaultView: 'agendaDay',
+            defaultView: 'listDay',
             height: getCalendarHeight(),
             editable: true,
             timeFormat: timeFormat,
