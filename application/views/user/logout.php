@@ -42,13 +42,6 @@
         <i class="fas fa-wrench mr-2"></i>
         <?= lang('backend_section') ?>
     </a>
-
-    <div class="mt-4">
-        <small>
-            Powered by
-            <a href="https://easyappointments.org">Easy!Appointments</a>
-        </small>
-    </div>
 </div>
 </body>
 </html>
