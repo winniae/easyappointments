@@ -30,6 +30,7 @@ class Availability {
     {
         $this->CI =& get_instance();
         $this->CI->load->model('providers_model');
+        $this->CI->load->model('services_model');
         $this->CI->load->model('secretaries_model');
         $this->CI->load->model('secretaries_model');
         $this->CI->load->model('admins_model');
@@ -395,8 +396,10 @@ class Availability {
 
             while ($slot_end <= $period['end'])
             {
+                // we ignore other services!!!
+
                 // Make sure there is no other service appointment for this time slot.
-                $other_service_attendants_number = $this->CI->appointments_model->get_other_service_attendants_number(
+                /*$other_service_attendants_number = $this->CI->appointments_model->get_other_service_attendants_number(
                     $slot_start,
                     $slot_end,
                     $service['id'],
@@ -409,7 +412,7 @@ class Availability {
                     $slot_start->add($interval);
                     $slot_end->add($interval);
                     continue;
-                }
+                }*/
 
                 // Check reserved attendants for this time slot and see if current attendants fit.
                 $appointment_attendants_number = $this->CI->appointments_model->get_attendants_number_for_period(
@@ -427,6 +430,9 @@ class Availability {
                     $hours[] =
                         [
                             'start' => $slot_start->format('H:i'),
+                            'start_datetime' => $date . ' ' . $slot_start->format('H:i:s'),
+                            'end' => $slot_end->format('H:i'),
+                            'end_datetime' => $date . ' ' . $slot_end->format('H:i:s'),
                             'available_attendants' => max($availableAttendants, 0),
                             'max_attendants' => $service['attendants_number']
                         ];
@@ -601,5 +607,37 @@ class Availability {
 //        sort($available_hours, SORT_STRING);
 //        return array_values($available_hours);
         return $available_hours;
+    }
+
+    /**
+     * Get all available hours for all providers and services.
+     * @param $startDate
+     * @param $endDate
+     * @throws Exception
+     */
+    public function get_all_slots($startDate, $endDate): array
+    {
+        // for each service and each provider, get available hours
+        $all_providers = $this->CI->providers_model->get_available_providers();
+        $result = [];
+
+        $current_date = new DateTime($startDate);
+        $end_date = new DateTime($endDate);
+
+        while ($current_date <= $end_date) {
+            foreach ($all_providers as $provider) {
+                foreach ($provider['services'] as $service_id) {
+                    $service = $this->CI->services_model->get_row($service_id);
+                    $slots = $this->get_available_hours($current_date->format("Y-m-d"), $service, $provider);
+                    foreach ($slots as &$slot) {
+                        $slot['service_name'] = $service['name'];
+                        $slot['provider_id'] = $provider['id'];
+                        $result[] = $slot;
+                    }
+                }
+            }
+            $current_date->add(new DateInterval("P1D"));
+        }
+        return $result;
     }
 }

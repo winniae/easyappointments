@@ -387,6 +387,11 @@ body legend {
     background-image: url('../img/custom.jpg');
 }
 
+#calendar-page #calendar .fc-slot {
+    background-image: url('../img/break.jpg');
+    font-weight: bold;
+}
+
 #calendar-page .fc-header {
     margin-bottom: 10px;
 }

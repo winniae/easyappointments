@@ -96,6 +96,9 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                                     $providerColumn.data('provider')
                                 );
 
+                                // Add the Slot Availability to the column.
+                                createAvailabilitySlots($providerColumn, response.slot_availability);
+
                                 // Add the appointments to the column.
                                 createAppointments($providerColumn, response.appointments);
 
@@ -638,6 +641,9 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
             provider
         );
 
+        // Add the Slot Availability to the column.
+        createAvailabilitySlots($providerColumn, events.slot_availability);
+
         // Add the appointments to the column.
         createAppointments($providerColumn, events.appointments);
 
@@ -988,7 +994,7 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
             }
 
             var event = {
-                title: EALang.unavailable,
+                title: EALang.unavailable + " - " + unavailability.notes,
                 start: moment(unavailability.start_datetime),
                 end: moment(unavailability.end_datetime),
                 allDay: false,
@@ -996,6 +1002,50 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                 editable: true,
                 className: 'fc-unavailable fc-custom',
                 data: unavailability
+            };
+
+            $providerColumn.find('.calendar-wrapper').fullCalendar('renderEvent', event, false);
+        }
+    }
+
+    /**
+     * Create Availability Slots
+     *
+     * This method will add the availability slots on the table view.
+     *
+     * @param {jQuery} $providerColumn The provider column container.
+     * @param {Object[]} available_hours Contains the availability events data.
+     */
+    function createAvailabilitySlots($providerColumn, available_hours) {
+        if (available_hours.length === 0) {
+            return;
+        }
+
+        for (var index in available_hours) {
+            var availableHour = available_hours[index];
+
+            if (availableHour.provider_id !== $providerColumn.data('provider').id ||
+                availableHour.max_attendants <= 1) {
+                continue;
+            }
+
+            var color = "green";
+            if (availableHour.available_attendants == 0) {
+                color = "red";
+            }
+            else if (availableHour.available_attendants < availableHour.max_attendants) {
+                color = "yellow";
+            }
+
+            var event = {
+                title: availableHour.service_name + " - " + availableHour.available_attendants + " / " + availableHour.max_attendants,
+                start: moment(availableHour.start_datetime),
+                end: moment(availableHour.end_datetime),
+                allDay: false,
+                color: color,
+                editable: false,
+                className: 'fc-slot',
+                data: availableHour
             };
 
             $providerColumn.find('.calendar-wrapper').fullCalendar('renderEvent', event, false);

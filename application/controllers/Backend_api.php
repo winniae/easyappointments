@@ -45,6 +45,7 @@ class Backend_api extends EA_Controller {
         $this->load->model('services_model');
         $this->load->model('settings_model');
         $this->load->model('user_model');
+        $this->load->library('availability');
         $this->load->library('google_sync');
         $this->load->library('ics_file');
         $this->load->library('notifications');
@@ -79,7 +80,10 @@ class Backend_api extends EA_Controller {
                     'is_unavailable' => TRUE,
                     'start_datetime >=' => $start_date,
                     'end_datetime <=' => $end_date
-                ])
+                ]),
+                'slot_availability' => $this->availability->get_all_slots(
+                    $this->input->post('startDate'), $this->input->post('endDate')
+                )
             ];
 
             foreach ($response['appointments'] as &$appointment)
