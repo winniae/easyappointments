@@ -766,7 +766,7 @@ window.FrontendBook = window.FrontendBook || {};
             return;
         }
 
-        $serviceDescription.addClass(serviceId);
+        $serviceDescription.addClass("sd" + serviceId);
 
         $('<strong/>', {
             'text': service.name
