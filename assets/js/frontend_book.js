@@ -766,6 +766,8 @@ window.FrontendBook = window.FrontendBook || {};
             return;
         }
 
+        $serviceDescription.addClass(serviceId);
+
         $('<strong/>', {
             'text': service.name
         })
