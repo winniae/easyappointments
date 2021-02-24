@@ -97,13 +97,7 @@ window.FrontendBookApi = window.FrontendBookApi || {};
                         var freeAttendants = availableHour['available_attendants'];
                         var maxAttendants = availableHour['max_attendants'];
 
-                        var buttonText;
-                        if (maxAttendants > 1) {
-                            buttonText = availableHourMoment.format(timeFormat) + " (" + freeAttendants + " / " + maxAttendants + " verfügbar)";
-                        }
-                        else {
-                            buttonText = availableHourMoment.format(timeFormat);
-                        }
+                        var buttonText = availableHourMoment.format(timeFormat);
 
                         $('#available-hours').append(
                             $('<button/>', {
@@ -113,7 +107,24 @@ window.FrontendBookApi = window.FrontendBookApi || {};
                                     'available_attendants': freeAttendants
                                 },
                                 'text': buttonText
-                            })
+                            }).append(
+                                $('<div/>', {
+                                    'text': freeAttendants + ' ' + EALang.free_attendants_label
+                                })
+                            ).append(
+                                $('<div/>', {
+                                    'class': 'progress'
+                                }).append(
+                                    $('<div/>', {
+                                        'class': 'progress-bar',
+                                        'role': 'progressbar',
+                                        'aria-valuemin': '0',
+                                        'aria-valuenow': freeAttendants,
+                                        'aria-valuemax': maxAttendants,
+                                        'style': 'width:' + (freeAttendants/maxAttendants) * 100 + '%;'
+                                    })
+                                )
+                            )
                         );
                     });
 
