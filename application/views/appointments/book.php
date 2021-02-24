@@ -369,6 +369,13 @@
                     </div>
                 </div>
 
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="accept-newsletter">
+                    <label class="form-check-label" for="accept-newsletter">
+                        <?= lang('accept_newsletter') ?>
+                    </label>
+                </div>
+
                 <?php if ($display_terms_and_conditions): ?>
                     <div class="form-check mb-3">
                         <input type="checkbox" class="required form-check-input" id="accept-to-terms-and-conditions">

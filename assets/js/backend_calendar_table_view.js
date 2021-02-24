@@ -811,7 +811,10 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
             eventClick: onEventClick,
             eventResize: onEventResize,
             eventDrop: onEventDrop,
-            viewRender: onViewRender
+            viewRender: onViewRender,
+            eventRender: eventRenderer,
+            // default eventOrder: "start,-duration,allDay,title"
+            eventOrder: "start,orderPrio,-duration,allDay,title"
         });
 
         $wrapper.fullCalendar('gotoDate', moment(goToDate));
@@ -966,7 +969,8 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                 start: moment(appointment.start_datetime),
                 end: moment(appointment.end_datetime),
                 allDay: false,
-                data: appointment // Store appointment data for later use.
+                data: appointment, // Store appointment data for later use.
+                orderPrio: 10
             });
         }
 
@@ -1045,7 +1049,8 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                 color: color,
                 editable: false,
                 className: 'fc-slot',
-                data: availableHour
+                data: availableHour,
+                orderPrio: 2
             };
 
             $providerColumn.find('.calendar-wrapper').fullCalendar('renderEvent', event, false);
@@ -1788,6 +1793,25 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                 // $('#loading').css('visibility', '');
             }
         });
+    }
+
+    function eventRenderer(eventObj, $el) {
+        if (eventObj.data && eventObj.data.max_attendants > 1) {
+            $el.find('.fc-list-item-title').append(
+                $('<div/>', {
+                    'class': 'progress'
+                }).append(
+                    $('<div/>', {
+                        'class': 'progress-bar',
+                        'role': 'progressbar',
+                        'aria-valuemin': '0',
+                        'aria-valuenow': eventObj.data.available_attendants,
+                        'aria-valuemax': eventObj.data.max_attendants,
+                        'style': 'width:' + (eventObj.data.available_attendants / eventObj.data.max_attendants) * 100 + '%;'
+                    })
+                )
+            )
+        }
     }
 
     /**
