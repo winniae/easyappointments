@@ -1310,6 +1310,59 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                     })
                 ]
             });
+        } else if ($(this).hasClass('fc-slot') || $parent.hasClass('fc-slot') || $altParent.hasClass('fc-slot')) {
+           $html = $('<div/>', {
+                'html': [
+                    $('<strong/>', {
+                        'text': EALang.start
+                    }),
+                    $('<span/>', {
+                        'text': GeneralFunctions.formatDate(event.start.format('YYYY-MM-DD HH:mm:ss'), GlobalVariables.dateFormat, true)
+                    }),
+                    $('<br/>'),
+
+                    $('<strong/>', {
+                        'text': EALang.end
+                    }),
+                    $('<span/>', {
+                        'text': GeneralFunctions.formatDate(event.end.format('YYYY-MM-DD HH:mm:ss'), GlobalVariables.dateFormat, true)
+                    }),
+
+                    $('<hr/>'),
+
+                    $('<strong/>', {
+                        'text': EALang.free_attendants_label
+                    }),
+                    $('<div/>', {
+                        'text': event.data.available_attendants
+                    }),
+                    $('<strong/>', {
+                        'text': EALang.attendants_number
+                    }),
+                    $('<div/>', {
+                        'text': event.data.max_attendants
+                    }),
+
+                    $('<hr/>'),
+
+                    $('<div/>', {
+                        'class': 'd-flex justify-content-center',
+                        'html': [
+                            $('<button/>', {
+                                'class': 'close-popover btn btn-outline-secondary mr-2',
+                                'html': [
+                                    $('<i/>', {
+                                        'class': 'fas fa-ban mr-2'
+                                    }),
+                                    $('<span/>', {
+                                        'text': EALang.close
+                                    })
+                                ]
+                            })
+                        ]
+                    })
+                ]
+            });
         } else {
             displayEdit = (GlobalVariables.user.privileges.appointments.edit === true)
                 ? '' : 'd-none';
