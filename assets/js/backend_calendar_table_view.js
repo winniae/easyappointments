@@ -1888,6 +1888,11 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
 
         bindEventHandlers();
 
+        // set reload
+        setInterval(function () {
+            $('#reload-appointments').click();
+        }, 60000);
+
         // Hide Google Calendar Sync buttons cause they can not be used within this view.
         $('#enable-sync, #google-sync').hide();
     };
