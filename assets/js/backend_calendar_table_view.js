@@ -814,7 +814,8 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
             viewRender: onViewRender,
             eventRender: eventRenderer,
             // default eventOrder: "start,-duration,allDay,title"
-            eventOrder: "start,orderPrio,-duration,allDay,title"
+            eventOrder: "start,orderPrio,-duration,allDay,title",
+            nowIndicator: true
         });
 
         $wrapper.fullCalendar('gotoDate', moment(goToDate));
@@ -956,6 +957,10 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
             var appointment = appointments[index];
 
             if (appointment.id_users_provider !== $providerColumn.data('provider').id) {
+                continue;
+            }
+
+            if (appointment.expired) {
                 continue;
             }
 

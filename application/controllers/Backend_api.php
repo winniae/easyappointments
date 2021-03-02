@@ -92,6 +92,7 @@ class Backend_api extends EA_Controller {
                 $appointment['service'] = $this->services_model->get_row($appointment['id_services']);
                 $appointment['customer'] = $this->customers_model->get_row($appointment['id_users_customer']);
                 $appointment['audioguide'] = (bool) $appointment['audioguide'];
+                $appointment['expired'] = strtotime($appointment['end_datetime']) < strtotime('now');
             }
 
             $user_id = $this->session->userdata('user_id');
