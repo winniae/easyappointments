@@ -128,7 +128,8 @@
                 zip_code: $('#zip-code').val(),
                 notes: $('#notes').val(),
                 timezone: $('#timezone').val(),
-                language: $('#language').val() || 'english'
+                language: $('#language').val() || 'english',
+                newsletter: $('#accept-newsletter').prop('checked')
             };
 
             if ($('#customer-id').val()) {
@@ -262,6 +263,7 @@
         $('.record-details #timezone').val('Europe/Berlin');
 
         $('#language').val('english');
+        $('#accept-newsletter').prop('checked', false);
 
         $('#customer-appointments').empty();
         $('#edit-customer, #delete-customer').prop('disabled', true);
@@ -293,6 +295,7 @@
         $('#notes').val(customer.notes);
         $('#timezone').val(customer.timezone);
         $('#language').val(customer.language || 'english');
+        $('#accept-newsletter').prop('checked', customer.newsletter);
 
         $('#customer-appointments').empty();
 

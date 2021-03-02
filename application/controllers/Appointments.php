@@ -470,6 +470,7 @@ class Appointments extends EA_Controller {
 
             // Save customer language (the language which is used to render the booking page).
             $customer['language'] = config('language');
+            $customer['newsletter'] = (int) filter_var($customer['newsletter'], FILTER_VALIDATE_BOOLEAN);
             $customer_id = $this->customers_model->add($customer);
 
             $appointment['id_users_customer'] = $customer_id;

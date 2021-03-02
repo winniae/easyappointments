@@ -619,16 +619,21 @@ window.FrontendBook = window.FrontendBook || {};
                         }),
                         $('<br/>'),
                         $('<span/>', {
-                            'text': address ? EALang.address + ': ' + address : ''
+                            'text': EALang.address + ': ' + address
                         }),
                         $('<br/>'),
                         $('<span/>', {
-                            'text': city ? EALang.city + ': ' + city : ''
+                            'text': EALang.city + ': ' + city
                         }),
                         $('<br/>'),
                         $('<span/>', {
-                            'text': zipCode ? EALang.zip_code + ': ' + zipCode : ''
+                            'text': EALang.zip_code + ': ' + zipCode
                         }),
+                        $('<br/>'),
+                        $('<span/>', {
+                            'text': EALang.accept_newsletter  + ': '
+                        }),
+                        GeneralFunctions.renderCheckIcon($('#accept-newsletter').prop('checked')),
                         $('<br/>'),
                     ]
                 })
@@ -648,7 +653,8 @@ window.FrontendBook = window.FrontendBook || {};
             address: $('#address').val(),
             city: $('#city').val(),
             zip_code: $('#zip-code').val(),
-            timezone: $('#select-timezone').val()
+            timezone: $('#select-timezone').val(),
+            newsletter: $('#accept-newsletter').prop('checked')
         };
 
         data.appointment = {

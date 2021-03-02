@@ -93,6 +93,7 @@ class Backend_api extends EA_Controller {
                 $appointment['customer'] = $this->customers_model->get_row($appointment['id_users_customer']);
                 $appointment['audioguide'] = (bool) $appointment['audioguide'];
                 $appointment['expired'] = strtotime($appointment['end_datetime']) < strtotime('now');
+                $appointment['customer']['newsletter'] = (bool) $appointment['customer']['newsletter'];
             }
 
             $user_id = $this->session->userdata('user_id');
@@ -578,6 +579,7 @@ class Backend_api extends EA_Controller {
                 }
 
                 $customer['appointments'] = $appointments;
+                $customer['newsletter'] = (bool) $customer['newsletter'];
             }
 
             $response = $customers;

@@ -328,6 +328,8 @@ $lang['date'] = 'Datum';
 
 // new lang properties
 $lang['notes_frontend'] = 'Haben Sie noch weitere Hinweise zur Buchung?';
+$lang['accept_newsletter'] = 'Newsletter';
+$lang['accept_newsletter_frontend'] = 'Möchten Sie den Newsletter von Kultur Lindau abbonieren?';
 $lang['audioguide'] = 'Audioguide';
 $lang['audioguide_frontend'] = 'Möchten sie den Audioguide für ihre Gruppe dazubuchen?';
 $lang['attendant_count_frontend'] = 'Wieviele Teilnehmer*innen hat Ihre Besuchergruppe?';

@@ -211,6 +211,7 @@ window.BackendCalendarTableView = window.BackendCalendarTableView || {};
                 $dialog.find('#customer-notes').val(customer.notes);
                 $dialog.find('#attendant-count').val(appointment.attendant_count);
                 $dialog.find('#audioguide').prop('checked', appointment.audioguide);
+                $dialog.find('#accept-newsletter').prop('checked', customer.newsletter);
 
                 $dialog.modal('show');
             } else {

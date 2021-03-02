@@ -168,6 +168,13 @@
                     </div>
 
                     <div class="form-group">
+                        <input type="checkbox" class="form-control form-check-input" id="accept-newsletter">
+                        <label for="accept-newsletter">
+                            <?= lang('accept_newsletter') ?>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
                         <label class="control-label" for="notes">
                             <?= lang('notes') ?>
 

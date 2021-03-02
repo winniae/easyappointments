@@ -80,7 +80,8 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                 address: $dialog.find('#address').val(),
                 city: $dialog.find('#city').val(),
                 zip_code: $dialog.find('#zip-code').val(),
-                notes: $dialog.find('#customer-notes').val()
+                notes: $dialog.find('#customer-notes').val(),
+                newsletter: $dialog.find('#accept-newsletter').prop('checked')
             };
 
             if ($dialog.find('#customer-id').val() !== '') {
@@ -220,6 +221,7 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
                 $('#city').val(customer.city);
                 $('#zip-code').val(customer.zip_code);
                 $('#customer-notes').val(customer.notes);
+                $('#accept-newsletter').prop('checked', customer.newsletter);
             }
 
             $('#select-customer').trigger('click'); // Hide the list.
@@ -361,6 +363,7 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
         $('#new-customer').on('click', function () {
             $('#manage-appointment').find('#customer-id, #first-name, #last-name, #email, '
                 + '#phone-number, #address, #city, #zip-code, #customer-notes').val('');
+            $('#manage-appointment').find('#accept-newsletter').prop('checked', false);
         });
     }
 
@@ -378,7 +381,8 @@ window.BackendCalendarAppointmentsModal = window.BackendCalendarAppointmentsModa
         $dialog.find('.modal-message').fadeOut();
 
         $dialog.find('#attendant-count').empty();
-        $dialog.find('#audioguide').prop('selected', false);
+        $dialog.find('#audioguide').prop('checked', false);
+        $dialog.find('#accept-newsletter').prop('checked', false);
 
         // Prepare service and provider select boxes.
         $dialog.find('#select-service').val(

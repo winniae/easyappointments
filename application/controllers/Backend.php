@@ -81,6 +81,10 @@ class Backend extends EA_Controller {
         $view['timezones'] = $this->timezones->to_array();
         $this->set_user_data($view);
 
+        foreach($view['customers'] as &$customer) {
+            $customer['newsletter'] = (bool) $customer['newsletter'];
+        }
+
         if ($this->session->userdata('role_slug') === DB_SLUG_SECRETARY)
         {
             $secretary = $this->secretaries_model->get_row($this->session->userdata('user_id'));

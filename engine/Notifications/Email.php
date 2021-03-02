@@ -157,6 +157,7 @@ class Email {
             'customer_email' => $customer['email'],
             'customer_phone' => $customer['phone_number'],
             'customer_address' => $customer['address'],
+            'customer_newsletter' => $customer['newsletter']
         ], TRUE);
 
         $mailer = $this->create_mailer();
@@ -262,6 +263,7 @@ class Email {
             'customer_email' => $customer['email'],
             'customer_phone' => $customer['phone_number'],
             'customer_address' => $customer['address'],
+            'customer_newsletter' => $customer['newsletter'],
             'reason' => $reason->get(),
         ], TRUE);
 

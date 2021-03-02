@@ -372,7 +372,7 @@
                 <div class="form-check mb-3">
                     <input type="checkbox" class="form-check-input" id="accept-newsletter">
                     <label class="form-check-label" for="accept-newsletter">
-                        <?= lang('accept_newsletter') ?>
+                        <?= lang('accept_newsletter_frontend') ?>
                     </label>
                 </div>
 
