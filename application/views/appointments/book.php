@@ -60,14 +60,50 @@
                     background-color: #0a7292;
                     border-color: #0a7292;
                 }
+                #service-description.sd2 strong,#service-description.sd2 span,#service-description.sd2 br {
+                    display: none;
+                }
+                #service-description.sd2:after{
+                    content: "";
+                    display: block;
+                    max-width: 100%;
+                    background-image: url("/assets/img/chagall.jpg");
+                    height: 300px;
+                    background-position: center;
+                    background-position-x: center;
+                    background-position-y: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                }
                 #select-time .form-group{display: none}
                 #book-appointment-wizard #service-description{max-height: 36vh;}
                 #book-appointment-wizard #header {
                     background: rgb(255, 255, 255);
                 }
-                @media (max-width:768px){ {
-                    #book-appointment-wizard #company-name{margin-left: -185px;position: relative}
+                @media (max-width:768px){
+                    #book-appointment-wizard #company-name{margin-left: -185px;position: relative;
+                    }
                 }
+                .progress {
+                    background-color: #e5481d!important;;
+                    border-radius: 0;
+                    margin-right: 0 !important;
+                    margin-bottom: -6px;
+                }
+                .progress-bar {
+                    background-color: #8abd24!important;
+                }
+                #book-appointment-wizard #available-hours div {
+                    margin-right: 0;
+                }
+                a {
+                    color: #00a1d4;
+                }
+                .badge-primary {
+                    color: #fff;
+                    background-color: #00a1d4;
+                }
+
             </style>
             <!-- FRAME TOP BAR -->
 
@@ -474,6 +510,10 @@
                         <a class="backend-link badge badge-primary" href="<?= site_url('backend'); ?>">
                             <i class="fas fa-sign-in-alt mr-2"></i>
                             <?= $this->session->user_id ? lang('backend_section') : lang('login') ?>
+                        </a>
+
+                        <a class="backend-link" target="_blank" href="https://www.kultur-lindau.de/impressum">
+                            Impressum
                         </a>
                     </span>
                 </small>

@@ -97,7 +97,13 @@ window.FrontendBookApi = window.FrontendBookApi || {};
                         var freeAttendants = availableHour['available_attendants'];
                         var maxAttendants = availableHour['max_attendants'];
 
-                        var buttonText = availableHourMoment.format(timeFormat);
+                        var buttonText;
+                        if (maxAttendants > 1) {
+                            buttonText = availableHourMoment.format(timeFormat) + " (" + freeAttendants + " " + EALang.free_attendants_label + ")";
+                        }
+                        else {
+                            buttonText = availableHourMoment.format(timeFormat);
+                        }
 
                         $('#available-hours').append(
                             $('<button/>', {
@@ -108,10 +114,6 @@ window.FrontendBookApi = window.FrontendBookApi || {};
                                 },
                                 'text': buttonText
                             }).append(
-                                $('<div/>', {
-                                    'text': freeAttendants + ' ' + EALang.free_attendants_label
-                                })
-                            ).append(
                                 $('<div/>', {
                                     'class': 'progress'
                                 }).append(
