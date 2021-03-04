@@ -129,6 +129,17 @@ class Services_model extends EA_Model {
                 . $service['attendants_per_booking']);
         }
 
+        // Check if service dates are valid.
+        if ($service['start_datetime'] !== NULL && ! validate_mysql_datetime($service['start_datetime']))
+        {
+            throw new Exception('Service start datetime is invalid.');
+        }
+
+        if ($service['end_datetime'] !== NULL && ! validate_mysql_datetime($service['end_datetime']))
+        {
+            throw new Exception('Service end datetime is invalid.');
+        }
+
         return TRUE;
     }
 

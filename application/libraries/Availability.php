@@ -53,6 +53,27 @@ class Availability {
      */
     public function get_available_hours($date, $service, $provider, $exclude_appointment_id = NULL)
     {
+        // check service start and end dates
+        $day_start = new DateTime($date . ' 00:00:00');
+
+        $service_start_datetime = $service['start_datetime'];
+        $service_end_datetime = $service['end_datetime'];
+
+        if ($service_start_datetime) {
+            $service_start = new DateTime($service_start_datetime);
+            if ($day_start < $service_start) {
+                // service not open yet
+                return [];
+            }
+        }
+        if ($service_end_datetime) {
+            $service_end = new DateTime($service_end_datetime);
+            if ($service_end < $day_start) {
+                // service already over
+                return [];
+            }
+        }
+
         $available_periods = $this->get_available_periods($date, $provider, $exclude_appointment_id);
 
         if ($service['attendants_number'] > 1)

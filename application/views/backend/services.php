@@ -7,6 +7,7 @@
         baseUrl: <?= json_encode($base_url) ?>,
         dateFormat: <?= json_encode($date_format) ?>,
         timeFormat: <?= json_encode($time_format) ?>,
+        firstWeekday: <?= json_encode($first_weekday); ?>,
         services: <?= json_encode($services) ?>,
         categories: <?= json_encode($categories) ?>,
         timezones: <?= json_encode($timezones) ?>,
@@ -136,6 +137,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="service-location">
+                            <?= lang('location') ?>
+
+                        </label>
+                        <input id="service-location" class="form-control">
+                    </div>
+
+                    <div class="form-group">
                         <label for="service-category">
                             <?= lang('category') ?>
                         </label>
@@ -174,11 +183,14 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="service-location">
-                            <?= lang('location') ?>
+                        <label for="service-start-datetime"
+                               class="control-label"><?= lang('service_start_date_time') ?></label>
+                        <input id="service-start-datetime" class="form-control">
+                    </div>
 
-                        </label>
-                        <input id="service-location" class="form-control">
+                    <div class="form-group">
+                        <label for="service-end-datetime" class="control-label"><?= lang('service_end_date_time') ?></label>
+                        <input id="service-end-datetime" class="form-control">
                     </div>
 
                     <div class="form-group">

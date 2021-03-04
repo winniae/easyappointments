@@ -130,6 +130,11 @@
          * Event: Save Service Button "Click"
          */
         $('#services').on('click', '#save-service', function () {
+            var start = $('#service-start-datetime').datepicker('getDate');
+            var startDatetime = start ? start.toString('yyyy-MM-dd 00:00:00') : null;
+            var end = $('#service-end-datetime').datepicker('getDate');
+            var endDatetime = end? end.toString('yyyy-MM-dd 23:59:59') : null;
+
             var service = {
                 name: $('#service-name').val(),
                 duration: $('#service-duration').val(),
@@ -139,7 +144,9 @@
                 location: $('#service-location').val(),
                 availabilities_type: $('#service-availabilities-type').val(),
                 attendants_number: $('#service-attendants-number').val(),
-                attendants_per_booking: $('#service-attendants-per-booking').val()
+                attendants_per_booking: $('#service-attendants-per-booking').val(),
+                start_datetime: startDatetime,
+                end_datetime: endDatetime
             };
 
             if ($('#service-category').val() !== 'null') {
@@ -314,6 +321,81 @@
 
         $('#services .record-details .has-error').removeClass('has-error');
         $('#services .record-details .form-message').hide();
+
+        // reset and initialize datepicker
+        var dateFormat;
+        var startDatetime = null;
+        var endDatetime = null;
+
+        switch (GlobalVariables.dateFormat) {
+            case 'DMY':
+                dateFormat = 'dd/mm/yy';
+                break;
+            case 'DDMY':
+                dateFormat = 'dd.mm.yy';
+                break;
+            case 'MDY':
+                dateFormat = 'mm/dd/yy';
+                break;
+            case 'YMD':
+                dateFormat = 'yy/mm/dd';
+                break;
+            default:
+                throw new Error('Invalid GlobalVariables.dateFormat value.');
+        }
+
+        var firstWeekDay = GlobalVariables.firstWeekday;
+        var firstWeekDayNumber = GeneralFunctions.getWeekDayId(firstWeekDay);
+
+        $('#service-start-datetime').datepicker({
+            dateFormat: dateFormat,
+
+            // Translation
+            dayNames: [EALang.sunday, EALang.monday, EALang.tuesday, EALang.wednesday,
+                EALang.thursday, EALang.friday, EALang.saturday],
+            dayNamesShort: [EALang.sunday.substr(0, 3), EALang.monday.substr(0, 3),
+                EALang.tuesday.substr(0, 3), EALang.wednesday.substr(0, 3),
+                EALang.thursday.substr(0, 3), EALang.friday.substr(0, 3),
+                EALang.saturday.substr(0, 3)],
+            dayNamesMin: [EALang.sunday.substr(0, 2), EALang.monday.substr(0, 2),
+                EALang.tuesday.substr(0, 2), EALang.wednesday.substr(0, 2),
+                EALang.thursday.substr(0, 2), EALang.friday.substr(0, 2),
+                EALang.saturday.substr(0, 2)],
+            monthNames: [EALang.january, EALang.february, EALang.march, EALang.april,
+                EALang.may, EALang.june, EALang.july, EALang.august, EALang.september,
+                EALang.october, EALang.november, EALang.december],
+            prevText: EALang.previous,
+            nextText: EALang.next,
+            currentText: EALang.now,
+            closeText: EALang.close,
+            firstDay: firstWeekDayNumber
+        });
+        $('#service-start-datetime').datepicker('setDate', startDatetime);
+
+        $('#service-end-datetime').datepicker({
+            dateFormat: dateFormat,
+
+            // Translation
+            dayNames: [EALang.sunday, EALang.monday, EALang.tuesday, EALang.wednesday,
+                EALang.thursday, EALang.friday, EALang.saturday],
+            dayNamesShort: [EALang.sunday.substr(0, 3), EALang.monday.substr(0, 3),
+                EALang.tuesday.substr(0, 3), EALang.wednesday.substr(0, 3),
+                EALang.thursday.substr(0, 3), EALang.friday.substr(0, 3),
+                EALang.saturday.substr(0, 3)],
+            dayNamesMin: [EALang.sunday.substr(0, 2), EALang.monday.substr(0, 2),
+                EALang.tuesday.substr(0, 2), EALang.wednesday.substr(0, 2),
+                EALang.thursday.substr(0, 2), EALang.friday.substr(0, 2),
+                EALang.saturday.substr(0, 2)],
+            monthNames: [EALang.january, EALang.february, EALang.march, EALang.april,
+                EALang.may, EALang.june, EALang.july, EALang.august, EALang.september,
+                EALang.october, EALang.november, EALang.december],
+            prevText: EALang.previous,
+            nextText: EALang.next,
+            currentText: EALang.now,
+            closeText: EALang.close,
+            firstDay: firstWeekDayNumber
+        });
+        $('#service-end-datetime').datepicker('setDate', endDatetime);
     };
 
     /**
@@ -332,6 +414,13 @@
         $('#service-availabilities-type').val(service.availabilities_type);
         $('#service-attendants-number').val(service.attendants_number);
         $('#service-attendants-per-booking').val(service.attendants_per_booking);
+
+        // Set the start and end datetime of the appointment.
+        var startDatetime = Date.parseExact(service.start_datetime, 'yyyy-MM-dd HH:mm:ss');
+        $('#service-start-datetime').datepicker('setDate', startDatetime);
+
+        var endDatetime = Date.parseExact(service.end_datetime, 'yyyy-MM-dd HH:mm:ss');
+        $('#service-end-datetime').datepicker('setDate', endDatetime);
 
         var categoryId = (service.id_service_categories !== null) ? service.id_service_categories : 'null';
         $('#service-category').val(categoryId);
