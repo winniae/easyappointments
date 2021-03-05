@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 // English
 $lang['page_title'] = 'Book Appointment With';
-$lang['service_and_provider'] = 'Service & Provider';
+$lang['service_and_provider'] = 'Choose Exhibition';
 $lang['select_service'] = 'Select Service';
 $lang['select_provider'] = 'Select Provider';
 $lang['duration'] = 'Duration';
@@ -41,7 +41,7 @@ $lang['appointment_booked'] = 'Your appointment has been successfully booked.';
 $lang['thank_you_for_appointment'] = 'Thank you for arranging an appointment with us. Below you can see the appointment details. Make changes by clicking the appointment link.';
 $lang['appointment_details_title'] = 'Appointment Details';
 $lang['customer_details_title'] = 'Customer Details';
-$lang['service'] = 'Service';
+$lang['service'] = 'Exhibition';
 $lang['provider'] = 'Provider';
 $lang['customer'] = 'Customer';
 $lang['start'] = 'Start';
@@ -328,3 +328,21 @@ $lang['list'] = 'List';
 $lang['default'] = 'Default';
 $lang['table'] = 'Table';
 $lang['date'] = 'Date';
+
+// new lang properties
+$lang['notes_frontend'] = 'Additional information to your reservation';
+$lang['accept_newsletter'] = 'Newsletter';
+$lang['accept_newsletter_frontend'] = 'Subscribe to the Newsletter from Kultur Lindau';
+$lang['audioguide'] = 'Audioguide';
+$lang['audioguide_frontend'] = 'Add multilanguage Audioguide to your reservation';
+$lang['attendant_count_frontend'] = 'How many people will be visiting? (please call for larger groups)';
+$lang['attendant_count'] = 'Attendants Count';
+$lang['attendants_per_booking'] = 'Maximum Attendants per booking';
+$lang['attendant_count_overflow'] = 'There are not enought available places for the selected booking.';
+$lang['free_attendants_label'] = 'available places';
+$lang['service_start_date_time'] = 'Exhibition start date';
+$lang['service_end_date_time'] = 'Exhibition end date';
+$lang['confirmation_notes'] = 'Bitte beachten Sie, dass es sich hierbei um eine verbindliche Reservierung handelt. Die Bezahlung des Eintritts erfolgt am Besuchstag an der Museumskasse. Sollten Sie Ihre Reservierung nicht wahrnehmen können, stornieren Sie diese bitte über den Link in der Bestätigungsmail. Wir wünschen Ihnen viel Freude beim Museumsbesuch!';
+$lang['confirmation_email_notes'] = 'Bitte beachten Sie, dass es sich hierbei um eine verbindliche Reservierung handelt. Die Bezahlung des Eintritts erfolgt am Besuchstag an der Museumskasse. Wir wünschen Ihnen viel Freude beim Museumsbesuch!';
+$lang['legal_notes_link'] = 'Legal Notice';
+$lang['cancel-appointment'] = 'Cancel Reservation';
