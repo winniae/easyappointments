@@ -559,7 +559,7 @@ window.FrontendBook = window.FrontendBook || {};
                             'text': EALang.start + ': ' + selectedDate + ' ' + Date.parse($('.selected-hour').data('value') || '').toString('HH:mm')
                         }),
                         $('<br/>'),
-                        $('<span/>', {
+                        /*$('<span/>', {
                             'text': EALang.timezone + ': ' + $('#select-timezone option:selected').text()
                         }),
                         $('<br/>'),
@@ -569,7 +569,7 @@ window.FrontendBook = window.FrontendBook || {};
                                 'hidden': !servicePrice
                             }
                         }),
-                        $('<br/>'),
+                        $('<br/>'),*/
                         $('<span/>', {
                             'text': EALang.attendant_count + ': ' + $('#attendant-count option:selected').text()
                         }),
@@ -641,6 +641,16 @@ window.FrontendBook = window.FrontendBook || {};
         })
             .appendTo('#customer-details');
 
+        $('#confirmation-notes').empty();
+
+        $('<div/>', {
+            'html': [
+                $('<p/>', {
+                    'text': EALang.confirmation_notes
+                })
+            ]
+        })
+            .appendTo('#confirmation-notes');
 
         // Update appointment form data for submission to server when the user confirms the appointment.
         var data = {};

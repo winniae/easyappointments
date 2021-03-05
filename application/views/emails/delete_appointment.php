@@ -6,7 +6,7 @@
 <div class="email-container" style="width: 650px; border: 1px solid #eee;">
     <div id="header" style="background-color: white; height: 150px; padding: 10px 15px;">
         <strong id="logo" style="color: white; font-size: 20px; margin-top: 10px; display: inline-block">
-            <span id="company-name"><img title="<?= $company_name ?>" src="https://reservierung.kultur-lindau.de/assets/img/logo.png"></span>
+            <span id="company-name"><img title="<?= $company_name ?>" src="<?= $base_url ?>/assets/img/logo.png"></span>
 
             <?= $company_name ?>
         </strong>
@@ -35,16 +35,12 @@
                 <td style="padding: 3px;"><?= $appointment_duration ?></td>
             </tr>
             <tr>
-                <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('timezone') ?></td>
-                <td style="padding: 3px;"><?= $appointment_timezone ?></td>
-            </tr>
-            <tr>
                 <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('attendant_count') ?></td>
                 <td style="padding: 3px;"><?= $appointment_attendant_count ?></td>
             </tr>
             <tr>
                 <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('audioguide') ?></td>
-                <td style="padding: 3px;"><?= $appointment_audioguide ?></td>
+                <td style="padding: 3px;"><?= $appointment_audioguide ? "&#10003;" : "&#10006;" ?></td>
             </tr>
             <tr>
                 <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('notes') ?></td>
@@ -69,6 +65,10 @@
             <tr>
                 <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('address') ?></td>
                 <td style="padding: 3px;"><?= $customer_address ?></td>
+            </tr>
+            <tr>
+                <td class="label" style="padding: 3px;font-weight: bold;"><?= lang('accept_newsletter') ?></td>
+                <td style="padding: 3px;"><?= $customer_newsletter? "&#10003;" : "&#10006;" ?></td>
             </tr>
         </table>
 

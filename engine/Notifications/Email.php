@@ -151,6 +151,7 @@ class Email {
             'appointment_notes' => $appointment['notes'],
             'appointment_audioguide' => $appointment['audioguide'],
             'appointment_attendant_count' => $appointment['attendant_count'],
+            'base_url' => $this->config['base_url'],
             'company_link' => $settings['company_link'],
             'company_name' => $settings['company_name'],
             'customer_name' => $customer['first_name'] . ' ' . $customer['last_name'],
@@ -257,6 +258,7 @@ class Email {
             'appointment_notes' => $appointment['notes'],
             'appointment_audioguide' => $appointment['audioguide'],
             'appointment_attendant_count' => $appointment['attendant_count'],
+            'base_url' => $this->config['base_url'],
             'company_link' => $settings['company_link'],
             'company_name' => $settings['company_name'],
             'customer_name' => $customer['first_name'] . ' ' . $customer['last_name'],
@@ -297,6 +299,7 @@ class Email {
         $html = $this->CI->load->view('emails/new_password', [
             'email_title' => lang('new_account_password'),
             'email_message' => str_replace('$password', '<strong>' . $password->get() . '</strong>', lang('new_password_is')),
+            'base_url' => $this->config['base_url'],
             'company_name' => $settings['company_name'],
             'company_email' => $settings['company_email'],
             'company_link' => $settings['company_link'],
