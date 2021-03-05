@@ -103,7 +103,10 @@
                     color: #fff;
                     background-color: #00a1d4;
                 }
-
+                a.badge-primary:focus, a.badge-primary:hover {
+                    color: #fff;
+                    background-color: #477f91;
+                }
             </style>
             <!-- FRAME TOP BAR -->
 
@@ -133,10 +136,10 @@
 
             <?php if ($manage_mode): ?>
                 <div id="cancel-appointment-frame" class="row booking-header-bar">
-                    <div class="col-12 col-md-10">
+                    <div class="col-12 col-md-8">
                         <small><?= lang('cancel_appointment_hint') ?></small>
                     </div>
-                    <div class="col-12 col-md-2">
+                    <div class="col-12 col-md-4">
                         <form id="cancel-appointment-form" method="post"
                               action="<?= site_url('appointments/cancel/' . $appointment_data['hash']) ?>">
 
@@ -150,7 +153,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="booking-header-bar row">
+                <?php /* <div class="booking-header-bar row">
                     <div class="col-12 col-md-10">
                         <small><?= lang('delete_personal_information_hint') ?></small>
                     </div>
@@ -159,7 +162,7 @@
                                 class="btn btn-danger btn-sm"><?= lang('delete') ?></button>
                     </div>
                 </div>
-            <?php endif; ?>
+            <?php */ endif; ?>
 
             <?php if (isset($exceptions)): ?>
                 <div style="margin: 10px">
@@ -422,6 +425,7 @@
                                     '{/$link}' => '</a>'
                                 ])
                             ?>
+                            <span class="text-danger">*</span>
                         </label>
                     </div>
                 <?php endif ?>
@@ -436,6 +440,7 @@
                                     '{/$link}' => '</a>'
                                 ])
                             ?>
+                            <span class="text-danger">*</span>
                         </label>
                     </div>
                 <?php endif ?>
@@ -462,6 +467,7 @@
                     <div class="row frame-content">
                         <div id="appointment-details" class="col-12 col-md-6"></div>
                         <div id="customer-details" class="col-12 col-md-6"></div>
+                        <div id="confirmation-notes" class="col-12 col-md-12"></div>
                     </div>
                     <?php if ($this->settings_model->get_setting('require_captcha') === '1'): ?>
                         <div class="row frame-content">
