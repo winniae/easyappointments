@@ -148,7 +148,7 @@
                             <textarea name="cancel_reason" style="display:none"></textarea>
 
                             <button id="cancel-appointment" class="btn btn-warning btn-sm">
-                                <?= lang('cancel') ?>
+                                <?= lang('cancel-appointment') ?>
                             </button>
                         </form>
                     </div>
