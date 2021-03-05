@@ -77,6 +77,11 @@
         <p><?= lang('confirmation_email_notes') ?></p>
     </div>
 
+    <div>
+        <h2><?= lang('terms_and_conditions') ?></h2>
+        <div style="font-size: 8px;"><?= $terms_and_conditions_content ?></div>
+    </div>
+
     <div id="footer" style="padding: 10px; text-align: center; margin-top: 10px;
                 border-top: 1px solid #EEE; background: #FAFAFA;">
         <a href="<?= $company_link ?>" style="text-decoration: none;"><?= $company_name ?></a>

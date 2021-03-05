@@ -158,7 +158,8 @@ class Email {
             'customer_email' => $customer['email'],
             'customer_phone' => $customer['phone_number'],
             'customer_address' => $customer['address'],
-            'customer_newsletter' => $customer['newsletter']
+            'customer_newsletter' => $customer['newsletter'],
+            'terms_and_conditions_content' => $settings['terms_and_conditions_content']
         ], TRUE);
 
         $mailer = $this->create_mailer();

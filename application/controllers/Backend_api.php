@@ -310,7 +310,8 @@ class Backend_api extends EA_Controller {
                 'company_link' => $this->settings_model->get_setting('company_link'),
                 'company_email' => $this->settings_model->get_setting('company_email'),
                 'date_format' => $this->settings_model->get_setting('date_format'),
-                'time_format' => $this->settings_model->get_setting('time_format')
+                'time_format' => $this->settings_model->get_setting('time_format'),
+                'terms_and_conditions_content' => $this->settings_model->get_setting('terms_and_conditions_content')
             ];
 
             $this->synchronization->sync_appointment_saved($appointment, $service, $provider, $customer, $settings, $manage_mode);
