@@ -341,3 +341,4 @@ $lang['service_start_date_time'] = 'Ausstellungsbeginn';
 $lang['service_end_date_time'] = 'Ausstellungsende';
 $lang['confirmation_notes'] = 'Bitte beachten Sie, dass es sich hierbei um eine verbindliche Reservierung handelt. Die Bezahlung des Eintritts erfolgt am Besuchstag an der Museumskasse. Sollten Sie Ihre Reservierung nicht wahrnehmen können, stornieren Sie diese bitte über den Link in der Bestätigungsmail. Wir wünschen Ihnen viel Freude beim Museumsbesuch!';
 $lang['confirmation_email_notes'] = 'Bitte beachten Sie, dass es sich hierbei um eine verbindliche Reservierung handelt. Die Bezahlung des Eintritts erfolgt am Besuchstag an der Museumskasse. Wir wünschen Ihnen viel Freude beim Museumsbesuch!';
+$lang['legal_notes_link'] = 'Impressum';

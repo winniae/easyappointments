@@ -513,13 +513,13 @@
                             <?= ucfirst(config('language')) ?>
                         </span>
 
-                        <a class="backend-link badge badge-primary" href="<?= site_url('backend'); ?>">
+                        <a class="backend-link badge badge-primary" target="_blank" href="<?= site_url('backend'); ?>">
                             <i class="fas fa-sign-in-alt mr-2"></i>
                             <?= $this->session->user_id ? lang('backend_section') : lang('login') ?>
                         </a>
 
                         <a class="backend-link" target="_blank" href="https://www.kultur-lindau.de/impressum">
-                            Impressum
+                            <?= lang('legal_notes_link') ?>
                         </a>
                     </span>
                 </small>

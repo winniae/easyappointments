@@ -34,7 +34,7 @@
 
         |
 
-        <a href="<?= site_url('appointments') ?>">
+        <a target="_blank" href="<?= site_url('appointments') ?>">
             <?= lang('go_to_booking_page') ?>
         </a>
     </div>
