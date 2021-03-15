@@ -95,6 +95,7 @@ class Backend_api extends EA_Controller {
                 $appointment['expired'] = strtotime($appointment['end_datetime']) < strtotime('now');
                 $appointment['customer']['newsletter'] = (bool) $appointment['customer']['newsletter'];
             }
+            unset ($appointment);
 
             $user_id = $this->session->userdata('user_id');
             $role_slug = $this->session->userdata('role_slug');
