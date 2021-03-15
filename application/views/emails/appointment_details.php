@@ -75,9 +75,7 @@
         <a href="<?= $appointment_link ?>" style="width: 600px;"><?= $appointment_link ?></a>
 
         <p><?= lang('confirmation_email_notes') ?></p>
-    </div>
 
-    <div>
         <h2><?= lang('terms_and_conditions') ?></h2>
         <div style="font-size: 8px;"><?= $terms_and_conditions_content ?></div>
     </div>
