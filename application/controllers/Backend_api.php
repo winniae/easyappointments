@@ -271,6 +271,13 @@ class Backend_api extends EA_Controller {
                     throw new Exception('You do not have the required privileges for this task.');
                 }
 
+                if (!$customer['language']) {
+                    $customer['language'] = config('language');
+                }
+                if (!$customer['timezone']) {
+                    $customer['timezone'] = $this->timezones->get_default_timezone();
+                }
+
                 $customer['id'] = $this->customers_model->add($customer);
             }
 
